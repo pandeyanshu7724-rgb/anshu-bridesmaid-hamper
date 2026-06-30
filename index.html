@@ -81,6 +81,30 @@
 
   </main>
 
-<script src="script.js?v=2"></script>
-</body>
+<script>
+  let selectedBride = "";
+
+  function chooseBride(name) {
+    selectedBride = name;
+
+    document.querySelectorAll(".envelope-card").forEach(function(button) {
+      button.disabled = true;
+      if (button.textContent.includes(name)) {
+        button.classList.add("opening");
+      }
+    });
+
+    setTimeout(function() {
+      document.getElementById("welcomePage").classList.remove("active");
+      document.getElementById("hamperPage").classList.add("active");
+      document.getElementById("hamperTitle").textContent = name + "'s Hamper";
+    }, 700);
+  }
+
+  function finishHamper() {
+    document.getElementById("hamperPage").classList.remove("active");
+    document.getElementById("thankYouPage").classList.add("active");
+    document.getElementById("thankYouTitle").textContent = "Thank you, " + selectedBride;
+  }
+</script></body>
 </html>
