@@ -1,1 +1,355 @@
-/* Bridesmaid Hamper Styles */
+:root {
+  --cream: #fff8f1;
+  --ivory: #fffdf9;
+  --blush: #ffd9df;
+  --rose: #c85b6b;
+  --deep-rose: #8d3042;
+  --soft-red: #e89aa3;
+  --text: #65333d;
+  --muted: #8f6269;
+  --gold: #caa46a;
+  --shadow: rgba(141, 48, 66, 0.18);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Inter", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at 10% 10%, rgba(255, 192, 203, 0.55), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(232, 154, 163, 0.45), transparent 30%),
+    linear-gradient(135deg, #fff8f1, #ffe8ec 45%, #fffdf9);
+  overflow-x: hidden;
+}
+
+.site-shell {
+  min-height: 100vh;
+  position: relative;
+}
+
+.page {
+  min-height: 100vh;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+}
+
+.page.active {
+  display: flex;
+}
+
+.decor {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  opacity: 0.5;
+  filter: blur(1px);
+  pointer-events: none;
+}
+
+.decor-one {
+  top: 7%;
+  left: 5%;
+  background:
+    radial-gradient(circle at 30% 30%, #fff, transparent 15%),
+    radial-gradient(circle at 65% 40%, #ffc6d0, transparent 18%),
+    radial-gradient(circle at 50% 70%, #d76578, transparent 20%);
+}
+
+.decor-two {
+  right: 5%;
+  bottom: 7%;
+  background:
+    radial-gradient(circle at 30% 30%, #fff, transparent 15%),
+    radial-gradient(circle at 65% 40%, #ffc6d0, transparent 18%),
+    radial-gradient(circle at 50% 70%, #d76578, transparent 20%);
+}
+
+.welcome-card,
+.thank-you-card {
+  width: min(920px, 94vw);
+  padding: 56px 36px;
+  text-align: center;
+  border-radius: 42px;
+  background: rgba(255, 253, 249, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 35px 90px var(--shadow);
+  backdrop-filter: blur(20px);
+  position: relative;
+  overflow: hidden;
+}
+
+.welcome-card::before,
+.thank-you-card::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(202, 164, 106, 0.35);
+  border-radius: 32px;
+  pointer-events: none;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+
+h1,
+h2 {
+  font-family: "Cormorant Garamond", serif;
+  color: var(--deep-rose);
+  line-height: 0.95;
+}
+
+h1 {
+  font-size: clamp(48px, 8vw, 90px);
+  margin-bottom: 26px;
+}
+
+h2 {
+  font-size: clamp(42px, 7vw, 76px);
+}
+
+.welcome-note,
+.subtext,
+.thank-you-card p {
+  max-width: 670px;
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.bridesmaid-grid {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 42px;
+}
+
+.envelope-card {
+  width: 245px;
+  min-height: 165px;
+  border: none;
+  border-radius: 26px;
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,218,225,0.9));
+  box-shadow: 0 22px 50px rgba(141, 48, 66, 0.2);
+  cursor: pointer;
+  color: var(--deep-rose);
+  position: relative;
+  transition: 0.35s ease;
+  overflow: hidden;
+}
+
+.envelope-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(145deg, transparent 49%, rgba(202,164,106,0.32) 50%, transparent 51%),
+    linear-gradient(35deg, transparent 49%, rgba(202,164,106,0.22) 50%, transparent 51%);
+}
+
+.envelope-card:hover {
+  transform: translateY(-10px) scale(1.025);
+  box-shadow: 0 30px 65px rgba(141, 48, 66, 0.26);
+}
+
+.seal {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  margin: 18px auto 12px;
+  border-radius: 50%;
+  background: var(--deep-rose);
+  color: var(--ivory);
+  font-size: 22px;
+  box-shadow: 0 8px 20px rgba(141, 48, 66, 0.28);
+  position: relative;
+  z-index: 1;
+}
+
+.name {
+  display: block;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 36px;
+  font-weight: 700;
+  position: relative;
+  z-index: 1;
+}
+
+.envelope-card small {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  position: relative;
+  z-index: 1;
+}
+
+#hamperPage {
+  flex-direction: column;
+  text-align: center;
+}
+
+.hamper-layout {
+  width: min(1150px, 100%);
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 30px;
+  align-items: center;
+  margin-top: 35px;
+}
+
+.items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+  gap: 14px;
+}
+
+.item-card {
+  border: 1px solid rgba(255,255,255,0.8);
+  background: rgba(255,253,249,0.75);
+  border-radius: 22px;
+  padding: 16px 12px;
+  cursor: pointer;
+  box-shadow: 0 14px 35px rgba(141,48,66,0.12);
+  transition: 0.25s ease;
+}
+
+.item-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 45px rgba(141,48,66,0.18);
+}
+
+.item-icon {
+  font-size: 28px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.basket-area {
+  display: flex;
+  justify-content: center;
+}
+
+.basket {
+  width: min(360px, 90vw);
+  min-height: 350px;
+  background: linear-gradient(145deg, #ffe2c7, #d89b70);
+  border-radius: 40px 40px 70px 70px;
+  padding: 78px 24px 28px;
+  position: relative;
+  box-shadow: 0 30px 70px rgba(108, 55, 39, 0.22);
+}
+
+.basket-handle {
+  position: absolute;
+  width: 220px;
+  height: 135px;
+  border: 16px solid #b97954;
+  border-bottom: none;
+  border-radius: 130px 130px 0 0;
+  top: -58px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.selected-items {
+  min-height: 220px;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.38);
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+}
+
+.empty-text {
+  color: rgba(101, 51, 61, 0.65);
+  font-size: 14px;
+  align-self: center;
+}
+
+.selected-pill {
+  background: rgba(255,255,255,0.78);
+  border-radius: 999px;
+  padding: 9px 13px;
+  font-size: 13px;
+  box-shadow: 0 8px 18px rgba(141,48,66,0.1);
+}
+
+.missed-box {
+  margin-top: 34px;
+  width: min(620px, 92vw);
+  display: grid;
+  gap: 12px;
+}
+
+.missed-box label {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 28px;
+  color: var(--deep-rose);
+}
+
+textarea {
+  min-height: 105px;
+  resize: vertical;
+  border: 1px solid rgba(202, 164, 106, 0.35);
+  border-radius: 24px;
+  padding: 18px;
+  font-family: "Inter", sans-serif;
+  background: rgba(255,253,249,0.72);
+  color: var(--text);
+  outline: none;
+  box-shadow: 0 14px 35px rgba(141,48,66,0.1);
+}
+
+.done-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 16px 24px;
+  background: var(--deep-rose);
+  color: var(--ivory);
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 16px 35px rgba(141,48,66,0.25);
+}
+
+.love {
+  margin-top: 28px !important;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 30px !important;
+  color: var(--deep-rose) !important;
+}
+
+@media (max-width: 850px) {
+  .hamper-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .items-grid {
+    order: 2;
+  }
+
+  .basket-area {
+    order: 1;
+  }
+}
