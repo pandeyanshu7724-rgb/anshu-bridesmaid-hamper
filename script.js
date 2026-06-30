@@ -1,30 +1,135 @@
-window.selectedBride = "";
+let selectedBride = "";
+let selectedItems = [];
 
-window.chooseBride = function(name) {
-  window.selectedBride = name;
+const hamperItems = [
+  { name: "Lipstick", icon: "💄" },
+  { name: "Lip Balm", icon: "🩷" },
+  { name: "Mascara", icon: "👁️" },
+  { name: "Blush", icon: "🌷" },
+  { name: "Kajal", icon: "🖤" },
 
-  var welcomePage = document.getElementById("welcomePage");
-  var hamperPage = document.getElementById("hamperPage");
-  var hamperTitle = document.getElementById("hamperTitle");
+  { name: "Sheet Masks", icon: "🧖🏻‍♀️" },
+  { name: "Hand Cream", icon: "🧴" },
+  { name: "Sunscreen", icon: "☀️" },
+  { name: "Face Mist", icon: "🌫️" },
+  { name: "Under-eye Patches", icon: "✨" },
 
-  var buttons = document.querySelectorAll(".envelope-card");
+  { name: "Earrings", icon: "💎" },
+  { name: "Bracelet", icon: "♡" },
+  { name: "Charm Necklace", icon: "📿" },
+  { name: "Ring", icon: "💍" },
 
-  buttons.forEach(function(button) {
+  { name: "Mini Perfume", icon: "🌸" },
+  { name: "Body Mist", icon: "🍑" },
+  { name: "Roll-on Perfume", icon: "🫧" },
+  { name: "Scented Lotion", icon: "🧁" },
+
+  { name: "Chocolates", icon: "🍫" },
+  { name: "Cookies", icon: "🍪" },
+  { name: "Nuts", icon: "🥜" },
+  { name: "Candy", icon: "🍬" },
+  { name: "Tea Sachets", icon: "🍵" },
+  { name: "Coffee Sachets", icon: "☕" },
+
+  { name: "Candle", icon: "🕯️" },
+  { name: "Bath Salt", icon: "🛁" },
+  { name: "Sleep Mask", icon: "🌙" },
+  { name: "Aromatherapy Roller", icon: "🌿" },
+
+  { name: "Name Pouch", icon: "👝" },
+  { name: "Tumbler", icon: "🥤" },
+  { name: "Keychain", icon: "🗝️" },
+  { name: "Personalized Compact Mirror", icon: "🪞" },
+  { name: "Initials Charm", icon: "🔖" }
+];
+
+function chooseBride(name) {
+  selectedBride = name;
+
+  document.querySelectorAll(".envelope-card").forEach(function(button) {
+    button.disabled = true;
     if (button.textContent.includes(name)) {
       button.classList.add("opening");
     }
-    button.disabled = true;
   });
 
   setTimeout(function() {
-    welcomePage.classList.remove("active");
-    hamperPage.classList.add("active");
-    hamperTitle.textContent = name + "'s Hamper";
+    document.getElementById("welcomePage").classList.remove("active");
+    document.getElementById("hamperPage").classList.add("active");
+    document.getElementById("hamperTitle").textContent = name + "'s Hamper";
+    renderItems();
   }, 700);
-};
+}
 
-window.finishHamper = function() {
+function renderItems() {
+  const grid = document.getElementById("itemsGrid");
+  grid.innerHTML = "";
+
+  hamperItems.forEach(function(item) {
+    const card = document.createElement("button");
+    card.className = "item-card";
+    card.innerHTML = `
+      <span class="item-icon">${item.icon}</span>
+      <span>${item.name}</span>
+      <small>add to hamper</small>
+    `;
+
+    card.onclick = function() {
+      addItem(item.name);
+      card.classList.add("picked");
+      setTimeout(function() {
+        card.classList.remove("picked");
+      }, 500);
+    };
+
+    grid.appendChild(card);
+  });
+}
+
+function addItem(itemName) {
+  if (!selectedItems.includes(itemName)) {
+    selectedItems.push(itemName);
+  }
+
+  renderSelectedItems();
+}
+
+function removeItem(itemName) {
+  selectedItems = selectedItems.filter(function(item) {
+    return item !== itemName;
+  });
+
+  renderSelectedItems();
+}
+
+function renderSelectedItems() {
+  const selectedBox = document.getElementById("selectedItems");
+  selectedBox.innerHTML = "";
+
+  if (selectedItems.length === 0) {
+    selectedBox.innerHTML = `<p class="empty-text">Your chosen pieces will appear here</p>`;
+    return;
+  }
+
+  selectedItems.forEach(function(itemName) {
+    const pill = document.createElement("button");
+    pill.className = "selected-pill";
+    pill.textContent = itemName + " ×";
+    pill.onclick = function() {
+      removeItem(itemName);
+    };
+    selectedBox.appendChild(pill);
+  });
+}
+
+function finishHamper() {
+  const missedText = document.getElementById("missedText").value.trim();
+
   document.getElementById("hamperPage").classList.remove("active");
   document.getElementById("thankYouPage").classList.add("active");
-  document.getElementById("thankYouTitle").textContent = "Thank you, " + window.selectedBride;
-};
+  document.getElementById("thankYouTitle").textContent = "Thank you, " + selectedBride;
+
+  console.log("Bride:", selectedBride);
+  console.log("Selected items:", selectedItems);
+  console.log("Anything missed:", missedText);
+}
