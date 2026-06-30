@@ -1,14 +1,13 @@
 :root {
   --cream: #fff8f1;
   --ivory: #fffdf9;
-  --blush: #ffd9df;
-  --rose: #c85b6b;
-  --deep-rose: #8d3042;
-  --soft-red: #e89aa3;
-  --text: #65333d;
-  --muted: #8f6269;
-  --gold: #caa46a;
-  --shadow: rgba(141, 48, 66, 0.18);
+  --blush: #f8d5dc;
+  --rose: #b94d61;
+  --deep-rose: #7f2d3d;
+  --wine: #5b1f2d;
+  --muted: #8b6268;
+  --gold: #c8a36a;
+  --shadow: rgba(91, 31, 45, 0.18);
 }
 
 * {
@@ -20,12 +19,23 @@
 body {
   min-height: 100vh;
   font-family: "Inter", sans-serif;
-  color: var(--text);
+  color: var(--wine);
   background:
-    radial-gradient(circle at 10% 10%, rgba(255, 192, 203, 0.55), transparent 28%),
-    radial-gradient(circle at 90% 85%, rgba(232, 154, 163, 0.45), transparent 30%),
-    linear-gradient(135deg, #fff8f1, #ffe8ec 45%, #fffdf9);
+    radial-gradient(circle at 18% 18%, rgba(255, 214, 222, 0.7), transparent 30%),
+    radial-gradient(circle at 82% 82%, rgba(233, 151, 164, 0.45), transparent 32%),
+    linear-gradient(135deg, #fffaf4, #fff0f2 52%, #fffdf9);
   overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image:
+    radial-gradient(rgba(127, 45, 61, 0.12) 0.7px, transparent 0.7px);
+  background-size: 18px 18px;
 }
 
 .site-shell {
@@ -50,40 +60,53 @@ body {
   position: absolute;
   width: 260px;
   height: 260px;
-  border-radius: 50%;
-  opacity: 0.5;
-  filter: blur(1px);
   pointer-events: none;
+  opacity: 0.75;
 }
 
 .decor-one {
   top: 7%;
-  left: 5%;
-  background:
-    radial-gradient(circle at 30% 30%, #fff, transparent 15%),
-    radial-gradient(circle at 65% 40%, #ffc6d0, transparent 18%),
-    radial-gradient(circle at 50% 70%, #d76578, transparent 20%);
+  left: 6%;
 }
 
 .decor-two {
-  right: 5%;
+  right: 6%;
   bottom: 7%;
+  transform: rotate(180deg);
+}
+
+.decor::before,
+.decor::after {
+  content: "";
+  position: absolute;
+  border-radius: 50% 50% 50% 0;
   background:
-    radial-gradient(circle at 30% 30%, #fff, transparent 15%),
-    radial-gradient(circle at 65% 40%, #ffc6d0, transparent 18%),
-    radial-gradient(circle at 50% 70%, #d76578, transparent 20%);
+    radial-gradient(circle at 38% 35%, #fff9fb 0 12%, #f6b9c4 13% 42%, #b94d61 43% 72%, transparent 73%);
+  width: 120px;
+  height: 120px;
+  transform: rotate(-35deg);
+  filter: blur(0.2px);
+}
+
+.decor::after {
+  width: 90px;
+  height: 90px;
+  left: 82px;
+  top: 92px;
+  background:
+    radial-gradient(circle at 38% 35%, #fff9fb 0 12%, #ffdce3 13% 42%, #d98291 43% 72%, transparent 73%);
 }
 
 .welcome-card,
 .thank-you-card {
-  width: min(920px, 94vw);
-  padding: 56px 36px;
+  width: min(980px, 94vw);
+  padding: 68px 42px 62px;
   text-align: center;
-  border-radius: 42px;
-  background: rgba(255, 253, 249, 0.72);
-  border: 1px solid rgba(255, 255, 255, 0.85);
-  box-shadow: 0 35px 90px var(--shadow);
-  backdrop-filter: blur(20px);
+  border-radius: 44px;
+  background: rgba(255, 253, 249, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.92);
+  box-shadow: 0 38px 95px var(--shadow);
+  backdrop-filter: blur(22px);
   position: relative;
   overflow: hidden;
 }
@@ -93,18 +116,28 @@ body {
   content: "";
   position: absolute;
   inset: 18px;
-  border: 1px solid rgba(202, 164, 106, 0.35);
-  border-radius: 32px;
+  border: 1px solid rgba(200, 163, 106, 0.34);
+  border-radius: 34px;
   pointer-events: none;
+}
+
+.welcome-card::after {
+  content: "✦";
+  position: absolute;
+  top: 36px;
+  right: 58px;
+  color: var(--gold);
+  font-size: 22px;
+  opacity: 0.75;
 }
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   font-size: 12px;
   color: var(--gold);
   font-weight: 600;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 h1,
@@ -115,8 +148,8 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(48px, 8vw, 90px);
-  margin-bottom: 26px;
+  font-size: clamp(52px, 8vw, 96px);
+  margin-bottom: 28px;
 }
 
 h2 {
@@ -126,29 +159,29 @@ h2 {
 .welcome-note,
 .subtext,
 .thank-you-card p {
-  max-width: 670px;
+  max-width: 720px;
   margin: 0 auto;
   color: var(--muted);
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.9;
 }
 
 .bridesmaid-grid {
   display: flex;
   justify-content: center;
-  gap: 28px;
+  gap: 32px;
   flex-wrap: wrap;
-  margin-top: 42px;
+  margin-top: 46px;
 }
 
 .envelope-card {
-  width: 245px;
-  min-height: 165px;
+  width: 260px;
+  min-height: 176px;
   border: none;
-  border-radius: 26px;
+  border-radius: 22px;
   background:
-    linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,218,225,0.9));
-  box-shadow: 0 22px 50px rgba(141, 48, 66, 0.2);
+    linear-gradient(145deg, rgba(255,255,255,0.96), rgba(255,230,235,0.96));
+  box-shadow: 0 24px 55px rgba(91, 31, 45, 0.18);
   cursor: pointer;
   color: var(--deep-rose);
   position: relative;
@@ -161,13 +194,25 @@ h2 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(145deg, transparent 49%, rgba(202,164,106,0.32) 50%, transparent 51%),
-    linear-gradient(35deg, transparent 49%, rgba(202,164,106,0.22) 50%, transparent 51%);
+    linear-gradient(150deg, transparent 49%, rgba(200, 163, 106, 0.36) 50%, transparent 51%),
+    linear-gradient(30deg, transparent 49%, rgba(200, 163, 106, 0.24) 50%, transparent 51%);
+}
+
+.envelope-card::after {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 88px;
+  background: linear-gradient(160deg, rgba(255,248,241,0.9) 49%, rgba(255,217,224,0.9) 50%);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  opacity: 0.9;
 }
 
 .envelope-card:hover {
   transform: translateY(-10px) scale(1.025);
-  box-shadow: 0 30px 65px rgba(141, 48, 66, 0.26);
+  box-shadow: 0 34px 72px rgba(91, 31, 45, 0.24);
 }
 
 .seal {
@@ -175,31 +220,42 @@ h2 {
   place-items: center;
   width: 46px;
   height: 46px;
-  margin: 18px auto 12px;
+  margin: 55px auto 12px;
   border-radius: 50%;
-  background: var(--deep-rose);
+  background:
+    radial-gradient(circle at 30% 25%, #d87488, var(--deep-rose));
   color: var(--ivory);
   font-size: 22px;
-  box-shadow: 0 8px 20px rgba(141, 48, 66, 0.28);
+  box-shadow: 0 8px 20px rgba(91, 31, 45, 0.28);
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .name {
   display: block;
   font-family: "Cormorant Garamond", serif;
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 700;
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .envelope-card small {
   display: block;
-  margin-top: 6px;
+  margin-top: 7px;
   color: var(--muted);
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+.envelope-card.opening {
+  animation: envelopeOpen 0.75s ease forwards;
+}
+
+@keyframes envelopeOpen {
+  0% { transform: scale(1); }
+  45% { transform: translateY(-8px) scale(1.04); }
+  100% { transform: translateY(-16px) scale(0.96); opacity: 0; }
 }
 
 #hamperPage {
@@ -223,18 +279,18 @@ h2 {
 }
 
 .item-card {
-  border: 1px solid rgba(255,255,255,0.8);
-  background: rgba(255,253,249,0.75);
+  border: 1px solid rgba(255,255,255,0.85);
+  background: rgba(255,253,249,0.78);
   border-radius: 22px;
   padding: 16px 12px;
   cursor: pointer;
-  box-shadow: 0 14px 35px rgba(141,48,66,0.12);
+  box-shadow: 0 14px 35px rgba(91,31,45,0.12);
   transition: 0.25s ease;
 }
 
 .item-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 22px 45px rgba(141,48,66,0.18);
+  box-shadow: 0 22px 45px rgba(91,31,45,0.18);
 }
 
 .item-icon {
@@ -293,7 +349,7 @@ h2 {
   border-radius: 999px;
   padding: 9px 13px;
   font-size: 13px;
-  box-shadow: 0 8px 18px rgba(141,48,66,0.1);
+  box-shadow: 0 8px 18px rgba(91,31,45,0.1);
 }
 
 .missed-box {
@@ -312,14 +368,14 @@ h2 {
 textarea {
   min-height: 105px;
   resize: vertical;
-  border: 1px solid rgba(202, 164, 106, 0.35);
+  border: 1px solid rgba(200, 163, 106, 0.35);
   border-radius: 24px;
   padding: 18px;
   font-family: "Inter", sans-serif;
   background: rgba(255,253,249,0.72);
-  color: var(--text);
+  color: var(--wine);
   outline: none;
-  box-shadow: 0 14px 35px rgba(141,48,66,0.1);
+  box-shadow: 0 14px 35px rgba(91,31,45,0.1);
 }
 
 .done-btn {
@@ -330,7 +386,7 @@ textarea {
   color: var(--ivory);
   font-size: 15px;
   cursor: pointer;
-  box-shadow: 0 16px 35px rgba(141,48,66,0.25);
+  box-shadow: 0 16px 35px rgba(91,31,45,0.25);
 }
 
 .love {
