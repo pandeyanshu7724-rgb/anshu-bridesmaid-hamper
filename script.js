@@ -1,28 +1,30 @@
-let selectedBride = "";
+window.selectedBride = "";
 
-function chooseBride(name) {
-  selectedBride = name;
+window.chooseBride = function(name) {
+  window.selectedBride = name;
 
-  const buttons = document.querySelectorAll(".envelope-card");
-  buttons.forEach(button => button.disabled = true);
+  var welcomePage = document.getElementById("welcomePage");
+  var hamperPage = document.getElementById("hamperPage");
+  var hamperTitle = document.getElementById("hamperTitle");
 
-  const chosenButton = [...buttons].find(button =>
-    button.textContent.includes(name)
-  );
+  var buttons = document.querySelectorAll(".envelope-card");
 
-  if (chosenButton) {
-    chosenButton.classList.add("opening");
-  }
+  buttons.forEach(function(button) {
+    if (button.textContent.includes(name)) {
+      button.classList.add("opening");
+    }
+    button.disabled = true;
+  });
 
-  setTimeout(() => {
-    document.getElementById("welcomePage").classList.remove("active");
-    document.getElementById("hamperPage").classList.add("active");
-    document.getElementById("hamperTitle").textContent = `${name}'s Hamper`;
-  }, 750);
-}
+  setTimeout(function() {
+    welcomePage.classList.remove("active");
+    hamperPage.classList.add("active");
+    hamperTitle.textContent = name + "'s Hamper";
+  }, 700);
+};
 
-function finishHamper() {
+window.finishHamper = function() {
   document.getElementById("hamperPage").classList.remove("active");
   document.getElementById("thankYouPage").classList.add("active");
-  document.getElementById("thankYouTitle").textContent = `Thank you, ${selectedBride}`;
-}
+  document.getElementById("thankYouTitle").textContent = "Thank you, " + window.selectedBride;
+};
