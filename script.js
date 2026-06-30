@@ -38,7 +38,7 @@ const hamperItems = [
 
   { name: "Name Pouch", icon: "👝" },
   { name: "Tumbler", icon: "🥤" },
-  { name: "Keychain", icon: "🗝️" },
+  { name: "Ceramic Items (Home/Decor)", icon: "🏺" },
   { name: "Personalized Compact Mirror", icon: "🪞" },
   { name: "Initials Charm", icon: "🔖" }
 
