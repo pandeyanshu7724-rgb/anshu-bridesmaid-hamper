@@ -8,7 +8,7 @@ const hamperItems = [
   { name: "Blush", icon: "🌷" },
   { name: "Kajal", icon: "🖤" },
 
-  { name: "Sheet Masks", icon: "🧖🏻‍♀️" },
+  { name: "Face Masks", icon: "🧖🏻‍♀️" },
   { name: "Hand Cream", icon: "🧴" },
   { name: "Sunscreen", icon: "☀️" },
   { name: "Face Mist", icon: "🌫️" },
@@ -17,19 +17,17 @@ const hamperItems = [
   { name: "Earrings", icon: "💎" },
   { name: "Bracelet", icon: "♡" },
   { name: "Charm Necklace", icon: "📿" },
-  { name: "Ring", icon: "💍" },
+  { name: "Rings", icon: "💍" },
 
-  { name: "Mini Perfume", icon: "🌸" },
+  { name: "Perfume", icon: "🌸" },
   { name: "Body Mist", icon: "🍑" },
-  { name: "Roll-on Perfume", icon: "🫧" },
   { name: "Scented Lotion", icon: "🧁" },
 
   { name: "Chocolates", icon: "🍫" },
   { name: "Cookies", icon: "🍪" },
-  { name: "Nuts", icon: "🥜" },
   { name: "Candy", icon: "🍬" },
-  { name: "Tea Sachets", icon: "🍵" },
-  { name: "Coffee Sachets", icon: "☕" },
+  { name: "Tea", icon: "🍵" },
+  { name: "Coffee", icon: "☕" },
 
   { name: "Candle", icon: "🕯️" },
   { name: "Bath Salt", icon: "🛁" },
@@ -41,6 +39,7 @@ const hamperItems = [
   { name: "Keychain", icon: "🗝️" },
   { name: "Personalized Compact Mirror", icon: "🪞" },
   { name: "Initials Charm", icon: "🔖" }
+  { name: "Cermaic disesh/decor", icon: "🔖" }
 ];
 
 function chooseBride(name) {
@@ -71,7 +70,6 @@ function renderItems() {
     card.innerHTML = `
       <span class="item-icon">${item.icon}</span>
       <span>${item.name}</span>
-      <small>add to hamper</small>
     `;
 
     card.onclick = function() {
