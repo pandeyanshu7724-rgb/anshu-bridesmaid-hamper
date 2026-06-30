@@ -1,6 +1,8 @@
 let selectedBride = "";
 let selectedItems = [];
 
+const sheetURL = "https://script.google.com/macros/s/AKfycbzSt8HM7ZBsi6dOcv4gnGYJuIuyuCQ1NbcHe1dEcLlNv32BU4Wso8FDgIpVyQ6fhZbE/exec";
+
 const hamperItems = [
   { name: "Lipstick", icon: "💄" },
   { name: "Lip Balm", icon: "🩷" },
@@ -17,9 +19,9 @@ const hamperItems = [
   { name: "Earrings", icon: "💎" },
   { name: "Bracelet", icon: "♡" },
   { name: "Charm Necklace", icon: "📿" },
-  { name: "Rings", icon: "💍" },
+  { name: "Ring", icon: "💍" },
 
-  { name: "Perfume", icon: "🌸" },
+  { name: "Mini Perfume", icon: "🌸" },
   { name: "Body Mist", icon: "🍑" },
   { name: "Scented Lotion", icon: "🧁" },
 
@@ -39,14 +41,18 @@ const hamperItems = [
   { name: "Keychain", icon: "🗝️" },
   { name: "Personalized Compact Mirror", icon: "🪞" },
   { name: "Initials Charm", icon: "🔖" }
-  { name: "Cermaic disesh/decor", icon: "🔖" }
+
 ];
 
 function chooseBride(name) {
   selectedBride = name;
+  selectedItems = [];
 
-  document.querySelectorAll(".envelope-card").forEach(function(button) {
+  const buttons = document.querySelectorAll(".envelope-card");
+
+  buttons.forEach(function(button) {
     button.disabled = true;
+
     if (button.textContent.includes(name)) {
       button.classList.add("opening");
     }
@@ -56,7 +62,9 @@ function chooseBride(name) {
     document.getElementById("welcomePage").classList.remove("active");
     document.getElementById("hamperPage").classList.add("active");
     document.getElementById("hamperTitle").textContent = name + "'s Hamper";
+
     renderItems();
+    renderSelectedItems();
   }, 700);
 }
 
@@ -67,17 +75,19 @@ function renderItems() {
   hamperItems.forEach(function(item) {
     const card = document.createElement("button");
     card.className = "item-card";
+
     card.innerHTML = `
       <span class="item-icon">${item.icon}</span>
-      <span>${item.name}</span>
+      <span class="item-name">${item.name}</span>
     `;
 
     card.onclick = function() {
       addItem(item.name);
       card.classList.add("picked");
+
       setTimeout(function() {
         card.classList.remove("picked");
-      }, 500);
+      }, 450);
     };
 
     grid.appendChild(card);
@@ -113,9 +123,11 @@ function renderSelectedItems() {
     const pill = document.createElement("button");
     pill.className = "selected-pill";
     pill.textContent = itemName + " ×";
+
     pill.onclick = function() {
       removeItem(itemName);
     };
+
     selectedBox.appendChild(pill);
   });
 }
@@ -123,7 +135,7 @@ function renderSelectedItems() {
 function finishHamper() {
   const missedText = document.getElementById("missedText").value.trim();
 
-  fetch("https://script.google.com/macros/s/AKfycbzSt8HM7ZBsi6dOcv4gnGYJuIuyuCQ1NbcHe1dEcLlNv32BU4Wso8FDgIpVyQ6fhZbE/exec", {
+  fetch(sheetURL, {
     method: "POST",
     mode: "no-cors",
     headers: {
