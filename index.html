@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anshu's Bridesmaid Hamper</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      background:
+        radial-gradient(circle at top left, #ffd7df 0, transparent 28%),
+        radial-gradient(circle at bottom right, #f7b7bd 0, transparent 26%),
+        linear-gradient(135deg, #fff8f2, #ffe8ec, #fffdf9);
+      color: #6b2f3a;
+      overflow-x: hidden;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    .page.active {
+      display: flex;
+    }
+
+    .pearl {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: #fffdf9;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255,255,255,0.9);
+      opacity: 0.8;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .p1 { top: 12%; left: 10%; }
+    .p2 { top: 20%; right: 14%; animation-delay: 1s; }
+    .p3 { bottom: 16%; left: 16%; animation-delay: 2s; }
+    .p4 { bottom: 20%; right: 10%; animation-delay: 3s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-18px); }
+    }
+
+    .welcome-box {
+      width: min(880px, 95%);
+      background: rgba(255, 255, 255, 0.58);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      border-radius: 36px;
+      padding: 55px 35px;
+      text-align: center;
+      box-shadow: 0 30px 80px rgba(178, 73, 87, 0.18);
+      backdrop-filter: blur(18px);
+      position: relative;
+    }
+
+    .flower {
+      font-size: 42px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 6vw, 72px);
+      line-height: 1.05;
+      color: #8d3042;
+      margin-bottom: 18px;
+    }
+
+    .note {
+      max-width: 680px;
+      margin: 0 auto 38px;
+      font-size: 17px;
+      line-height: 1.8;
+      color: #7b4a50;
+    }
+
+    .cards {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .bride-card {
+      width: 230px;
+      padding: 32px 22px;
+      border: none;
+      border-radius: 28px;
+      background: linear-gradient(145deg, #fffaf7, #ffdfe5);
+      color: #8d3042;
+      cursor: pointer;
+      box-shadow: 0 18px 40px rgba(150, 50, 70, 0.18);
+      transition: 0.3s ease;
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+    }
+
+    .bride-card span {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+      margin-top: 10px;
+      color: #9b5963;
+    }
+
+    .bride-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 26px 50px rgba(150, 50, 70, 0.24);
+    }
+  </style>
+</head>
+
+<body>
+
+  <section id="welcomePage" class="page active">
+    <div class="pearl p1"></div>
+    <div class="pearl p2"></div>
+    <div class="pearl p3"></div>
+    <div class="pearl p4"></div>
+
+    <div class="welcome-box">
+      <div class="flower">🌸</div>
+      <h1>Welcome, Anshu's Bridesmaids</h1>
+
+      <p class="note">
+        You have been such an important part of this journey, and I wanted your hamper to feel just as personal as our friendship.
+        Choose anything that catches your eye, and I’ll take care of the rest.
+      </p>
+
+      <div class="cards">
+        <button class="bride-card" onclick="chooseBride('Himanshi')">
+          Himanshi
+          <span>open your hamper card</span>
+        </button>
+
+        <button class="bride-card" onclick="chooseBride('Swati')">
+          Swati
+          <span>open your hamper card</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function chooseBride(name) {
+      alert(name + ", your hamper page is coming next ♡");
+    }
+  </script>
+
+</body>
+</html>
