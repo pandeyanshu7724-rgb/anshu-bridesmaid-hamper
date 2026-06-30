@@ -409,3 +409,11 @@ textarea {
     order: 1;
   }
 }
+
+
+.envelope-card::before,
+.envelope-card::after,
+.welcome-card::before,
+.welcome-card::after {
+    pointer-events: none;
+}
