@@ -123,11 +123,20 @@ function renderSelectedItems() {
 function finishHamper() {
   const missedText = document.getElementById("missedText").value.trim();
 
+  fetch("https://script.google.com/macros/s/AKfycbzSt8HM7ZBsi6dOcv4gnGYJuIuyuCQ1NbcHe1dEcLlNv32BU4Wso8FDgIpVyQ6fhZbE/exec", {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      name: selectedBride,
+      items: selectedItems,
+      notes: missedText
+    })
+  });
+
   document.getElementById("hamperPage").classList.remove("active");
   document.getElementById("thankYouPage").classList.add("active");
   document.getElementById("thankYouTitle").textContent = "Thank you, " + selectedBride;
-
-  console.log("Bride:", selectedBride);
-  console.log("Selected items:", selectedItems);
-  console.log("Anything missed:", missedText);
 }
